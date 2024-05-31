@@ -1,4 +1,6 @@
 import Compiler.*;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 public class Main {
     public static String[] strings = {
             "int main(){return 10;}",
@@ -83,10 +85,46 @@ public class Main {
         }
         System.out.println("代码生成程序结束");
     }
-    public static void main(String[] args) {
+    public static void bubble_sort()
+    {
+        String input= """
+                int main()
+                {
+                \tint i,j,temp;
+                \tint arr[5] = {5,3,2,4,1};
+                \tint n = 5;
+                \tfor(i=0;i<n-1;i=i+1)
+                \t{
+                \t\tfor(j=0;j<n-1-i;j=j+1)
+                \t\t{
+                \t\t\tif(arr[j]>arr[j+1])
+                \t\t\t{
+                \t\t\t\ttemp = arr[j];
+                \t\t\t\tarr[j]=arr[j+1];
+                \t\t\t\tarr[j+1]=temp;
+                \t\t\t}
+                \t\t}
+                \t}
+                \tprint(arr[0]);
+                \tprint(arr[1]);
+                \tprint(arr[2]);
+                \tprint(arr[3]);
+                \tprint(arr[4]);
+                \treturn 0;
+                }""";
+        Lexer.analyse(input);
+        Parser.parse(Lexer.get_token_list());
+        Analyzer.analyze(Parser.get_entry_node());
+        Generator.generate(Parser.get_entry_node());
+    }
+    public static void main(String[] args) throws FileNotFoundException {
         //test_lexer(); // 测试词法分析程序的代码
         //test_parser(); // 测试语法分析程序的代码
         //test_analyzer(); // 测试语义分析程序的代码
-        test_generator(); // 测试代码生成程序的代码
+        //test_generator(); // 测试代码生成程序的代码
+        PrintStream ps = new PrintStream("bubble_sort.s");
+        System.setOut(ps);
+        bubble_sort();
+        ps.close();
     }
 }
