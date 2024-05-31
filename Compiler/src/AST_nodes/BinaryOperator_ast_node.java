@@ -1,5 +1,6 @@
 package AST_nodes;
 import Tokens.Token_type;
+import Visitors.Visitor;
 public class BinaryOperator_ast_node extends AST_node
 {
     public AST_node left;
@@ -10,5 +11,9 @@ public class BinaryOperator_ast_node extends AST_node
         this.left = left;
         this.right = right;
         this.operator = operator;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

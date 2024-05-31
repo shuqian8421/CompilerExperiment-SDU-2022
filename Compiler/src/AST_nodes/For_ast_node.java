@@ -1,4 +1,5 @@
 package AST_nodes;
+import Visitors.Visitor;
 public class For_ast_node extends AST_node
 {
     public AST_node initialization;
@@ -11,5 +12,9 @@ public class For_ast_node extends AST_node
         this.condition = condition;
         this.increment = increment;
         this.statement = statement;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

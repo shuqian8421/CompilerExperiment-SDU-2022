@@ -1,4 +1,5 @@
 package AST_nodes;
+import Visitors.Visitor;
 import java.util.Vector;
 public class Program_ast_node extends AST_node
 {
@@ -10,5 +11,9 @@ public class Program_ast_node extends AST_node
     {
         this.global_variable_declarations_list = global_variable_declarations_list;
         this.function_declaration_list = function_declaration_list;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

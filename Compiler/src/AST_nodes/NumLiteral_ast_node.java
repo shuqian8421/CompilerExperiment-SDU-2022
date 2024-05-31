@@ -1,6 +1,7 @@
 package AST_nodes;
 import Tokens.Token;
 import Tokens.Token_type;
+import Visitors.Visitor;
 public class NumLiteral_ast_node extends AST_node
 {
     public String literal;
@@ -15,5 +16,9 @@ public class NumLiteral_ast_node extends AST_node
             type=Node_type.Node_bool;
         else if (token.type==Token_type.Token_char_literal)
             type=Node_type.Node_char;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

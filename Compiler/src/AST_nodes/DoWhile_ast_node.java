@@ -1,4 +1,5 @@
 package AST_nodes;
+import Visitors.Visitor;
 public class DoWhile_ast_node extends AST_node
 {
     public AST_node statement;
@@ -7,5 +8,9 @@ public class DoWhile_ast_node extends AST_node
     {
         this.statement = statement;
         this.condition = condition;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }

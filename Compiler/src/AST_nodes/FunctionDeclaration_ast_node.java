@@ -1,4 +1,5 @@
 package AST_nodes;
+import Visitors.Visitor;
 import java.util.Vector;
 public class FunctionDeclaration_ast_node extends AST_node
 {
@@ -13,5 +14,9 @@ public class FunctionDeclaration_ast_node extends AST_node
         this.function_name = function_name;
         this.formal_parameters = formal_parameters;
         this.function_block = function_block;
+    }
+    @Override
+    public void accept(Visitor v) {
+        v.visit(this);
     }
 }
