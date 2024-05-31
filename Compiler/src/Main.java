@@ -42,7 +42,22 @@ public class Main {
         }
         System.out.println("词法分析测试程序结束");
     }
+    public static void test_parser()
+    {
+        System.out.println("语法分析测试程序");
+        for(int i=0;i<strings.length;i++)
+        {
+            System.out.println("-----No."+(i+1)+"-----");
+            System.out.println("input:"+strings[i]);
+            Lexer.analyse(strings[i]);
+            Parser.parse(Lexer.get_token_list());
+            // 遍历AST
+            System.out.println("success!");
+        }
+        System.out.println("语法分析测试程序结束");
+    }
     public static void main(String[] args) {
-        test_lexer(); // 测试词法分析程序的代码
+        //test_lexer(); // 测试词法分析程序的代码
+        test_parser(); // 测试语法分析程序的代码
     }
 }
